@@ -1,0 +1,49 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+arr = []
+ans = []
+stack = []
+
+for _ in range(n):
+    m = int(input())
+    arr.append(m)
+-> 한줄코드
+arr=[int(input()) for _ in range(n)]
+cnt = 1
+
+for i in arr:
+    # stack 이 0 일때 처리
+    if len(stack) == 0:
+        while cnt <= i:
+            stack.append(cnt)
+            cnt += 1
+            ans.append("+")
+
+    l = stack[-1]
+
+    # print(l, i)
+    if l == i:
+        stack.pop()
+        ans.append("-")
+        # print("-")
+    elif l > i:
+        print("NO")
+        break
+    elif l < i:
+        while cnt <= i:
+            stack.append(cnt)
+            cnt += 1
+            ans.append("+")
+        stack.pop()
+        ans.append("-")
+
+else:
+    for a in ans:
+        print(a)
+
+#요렇게 출력
+print(ans, end='')
+

@@ -1,0 +1,33 @@
+import sys
+input = sys.stdin.readline
+
+str = list(input())
+
+stack = []
+ans = []
+# for i in range(len(str)):
+idx = 0
+noun = True
+while idx < len(str):
+    if str[idx] == '<':
+        noun = False
+
+        while stack:
+            ans.append(stack.pop())
+        ans.append(str[idx])
+    elif str[idx] == '>':
+        noun = True
+        ans.append(str[idx])
+    elif str[idx] == ' ' or str[idx] == '\n':
+        while stack:
+            ans.append(stack.pop())
+        if str[idx] == ' ':
+            ans.append(' ')
+    else:
+        if noun == False:
+            ans.append(str[idx])
+        else:
+            stack.append(str[idx])
+    idx += 1
+
+print(''.join(ans))

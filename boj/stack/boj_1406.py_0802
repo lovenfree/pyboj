@@ -1,0 +1,51 @@
+import sys
+input = sys.stdin.readline
+
+str = input()
+n = int(input())
+
+left = list(str.replace("\n", ""))
+# left = list(input().strip()) -> 이렇게 공백제거
+right = []
+
+commands = [input().replace("\n", "") for _ in range(n)]
+
+
+for c in commands:
+    # 이런식으로
+    # what = line[0]
+    if c.startswith("L"):
+        if len(left) == 0:
+            continue
+        t = left.pop()
+        right.append(t)
+
+    elif c.startswith("D"):
+        if len(right) == 0:
+            continue
+        t = right.pop()
+        left.append(t)
+
+    elif c.startswith("B"):
+        if len(left) == 0:
+            continue
+        left.pop()
+
+    elif c.startswith("P"):
+        _, t = c.split(" ")
+        # print(t)
+        left.append(t)
+    # print(left, "/", right)
+
+# 파이썬 스러운 코드로짜자!!
+left += right[::-1]
+print(''.join(left))
+
+
+# for _ in range(len(right)):
+#     t = right.pop()
+#     left.append(t)
+
+
+# for i in left:
+#     print(i, end="")
