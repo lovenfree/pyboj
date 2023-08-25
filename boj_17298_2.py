@@ -7,15 +7,14 @@ NGE=[-1]*n
 stack = list()
 
 for i in range(n):
-    if stack.count == 0:
+    if len(stack) == 0:
         stack.append(i)
-    else:
-        t = stack[-1]
-        while stack.count>0:
-            if A[t] < A[i]:
+    else :
+        while len(stack)>0:
+            if A[stack[-1]] < A[i]:
                 t = stack.pop()
                 NGE[t] = A[i]
-            elif A[t] > A[i]:
+            elif A[stack[-1]] > A[i]:
                 t = stack.append(i)
 
 
